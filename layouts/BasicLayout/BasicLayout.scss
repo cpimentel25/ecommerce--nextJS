@@ -3,6 +3,11 @@
 
     .content {
         background-color: $background-grey-light;
-        height: 100vh;
+        height: calc(100vh - 130px);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }

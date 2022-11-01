@@ -8,3 +8,32 @@ html {
 body {
     background-color: grey;
 }
+
+.ui.form {
+    .ui.input {
+        input {
+            border: 1px solid $border-grey;
+            font-size: 16px;
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .ui.button.basic {
+        background-color: $background-pink;
+        color: $font-dark;
+        border: 3px solid $black;
+        border-radius: 0;
+    }
+
+    .ui.button.submit  {
+        background-color: $background-pink;
+        color: $font-dark;
+        border: 3px solid $black;
+        border-radius: 0;
+    }
+}
