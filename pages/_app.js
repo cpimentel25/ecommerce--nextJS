@@ -1,14 +1,16 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import "../scss/global.scss";
 import "semantic-ui-css/semantic.min.css";
 import { ToastContainer } from "react-toastify";
 import AuthContext from "../context/AuthContext";
 import jwtDecode from "jwt-decode";
-import { setToken, getToken } from "../api/tokens";
+import { setToken, getToken, removeToken } from "../api/tokens";
 
 export default function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined);
   const [reloadUser, setReloadUser] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = getToken();
@@ -31,11 +33,19 @@ export default function MyApp({ Component, pageProps }) {
     });
   };
 
+  const logout = () => {
+    if(auth) {
+      removeToken();
+      setAuth(null);
+      router.push("/");
+    }
+  }
+
   const authData = useMemo(
     () => ({
       auth,
       login,
-      logout: () => null,
+      logout,
       setReloadUser,
     }),
     [auth]
